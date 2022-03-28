@@ -1,0 +1,26 @@
+create database db_exemplo;
+use db_exemplo;
+
+ create table tb_usuario
+(
+idUsu int primary key auto_increment,
+nomeUsu varchar(50) not null,
+cargo varchar(50) not null,
+DataNasc date
+);
+
+insert into tb_usuario(nomeUsu, cargo, DataNasc)
+	values('bob', 'Monstrorista', '1975/04/16'),
+		('Maria', '171', '1972/07/13');
+        
+select * from tb_usuario;
+
+delimiter $$
+
+create procedure InsertUsu(pNomeUsu varchar(50), pCargo varchar(50), pDataNasc date)
+begin
+insert into tb_usuario(nomeUsu, cargo, DataNasc)
+values(pNomeUsu, pCargo, pDataNasc);
+end; $$
+
+call InsertUsu("Enildo", "Professor", "1967/07/09");
